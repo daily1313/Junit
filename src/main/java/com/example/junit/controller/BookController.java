@@ -14,7 +14,7 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping("/books")
-    public ResponseEntity<?> save(@RequestBody Book book) {
+    public ResponseEntity<?> save(@RequestBody final Book book) {
         return new ResponseEntity<Book>(bookService.저장하기(book), HttpStatus.CREATED);
     }
 
@@ -24,12 +24,12 @@ public class BookController {
     }
 
     @GetMapping("/books/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
+    public ResponseEntity<?> findById(@PathVariable final Long id) {
         return new ResponseEntity<Book>(bookService.한건조회하기(id), HttpStatus.OK);
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Book book) {
+    public ResponseEntity<?> update(@PathVariable final Long id, @RequestBody final Book book) {
         return new ResponseEntity<>(bookService.수정하기(id, book), HttpStatus.OK);
     }
 

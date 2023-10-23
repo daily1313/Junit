@@ -15,12 +15,12 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public Book 저장하기(Book book) {
+    public Book 저장하기(final Book book) {
         return bookRepository.save(book);
     }
 
     @Transactional(readOnly = true) // JPA dirty Checking X
-    public Book 한건조회하기(Long id) {
+    public Book 한건조회하기(final Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book id를 확인해주세요."));
     }
@@ -30,14 +30,14 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book 수정하기(Long id, Book book) {
+    public Book 수정하기(final Long id, final Book book) {
         Book bookEntity = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book id를 확인해주세요."));
         bookEntity.수정하기(book.getTitle(), book.getAuthor());
         return bookEntity;
     }
 
-    public String 삭제하기(Long id) {
+    public String 삭제하기(final Long id) {
         bookRepository.deleteById(id);
         return "ok";
     }
